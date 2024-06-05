@@ -1,0 +1,13 @@
+.main {
+  width: 500px;
+  min-height: calc(100vh - 40px);
+  padding: 20px;
+  background-color: #e4e4e4;
+}
+
+.addTaskForm {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
