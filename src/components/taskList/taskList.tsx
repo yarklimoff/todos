@@ -1,4 +1,4 @@
-import { Button, Checkbox, CheckboxProps, Col } from 'antd';
+import { Button, Checkbox, CheckboxProps, Col, Typography } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { FC } from 'react';
 import { Task } from '../../models/taskStore';
@@ -11,10 +11,8 @@ type TaskListProps = {
 };
 
 const TaskList: FC<TaskListProps> = observer(({ tasks, onTaskDelete, onTaskUpdate }) => {
-  console.log(tasks);
   const onChange: CheckboxProps['onChange'] = (event) => {
     onTaskUpdate(event.target.value, event.target.checked);
-    console.log(event.target.value, event.target.checked);
   };
 
   if (tasks.length === 0) {
@@ -26,7 +24,9 @@ const TaskList: FC<TaskListProps> = observer(({ tasks, onTaskDelete, onTaskUpdat
       {tasks.map((task, index) => (
         <Col key={index} span={24} className="row">
           <Checkbox onChange={onChange} checked={task.done} value={task.id} key={index}>
-            {task.title}
+            <Typography.Text ellipsis={{ tooltip: true }} style={{ maxWidth: '400px' }}>
+              {task.title}
+            </Typography.Text>
           </Checkbox>
           <Button icon={<CloseCircleOutlined />} onClick={() => onTaskDelete(task.id)} />
         </Col>

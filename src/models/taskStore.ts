@@ -41,14 +41,18 @@ class TaskStore {
     localStorage.setItem('todoTasks', JSON.stringify(this.tasks));
   };
 
-  deleteTask = (id: string) => {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-    localStorage.setItem('todoTasks', JSON.stringify(this.tasks));
+  deleteTask = (id: string | undefined) => {
+    if (id) {
+      this.tasks = this.tasks.filter((task) => task.id !== id);
+      localStorage.setItem('todoTasks', JSON.stringify(this.tasks));
+    }
   };
 
-  updateTask = (id: string, state: boolean) => {
-    this.tasks.find((task) => task.id === id)?.changeState(state);
-    localStorage.setItem('todoTasks', JSON.stringify(this.tasks));
+  updateTask = (id: string | undefined, state: boolean) => {
+    if (id) {
+      this.tasks.find((task) => task.id === id)?.changeState(state);
+      localStorage.setItem('todoTasks', JSON.stringify(this.tasks));
+    }
   };
 }
 
