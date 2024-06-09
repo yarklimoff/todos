@@ -6,3 +6,5 @@ global.matchMedia =
       removeListener: jest.fn(),
     };
   };
+
+export {};
